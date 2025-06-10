@@ -1,9 +1,9 @@
-export ARCHS = arm64 armv7 armv7s arm64 arm64e
+export ARCHS = armv7 armv7s arm64 arm64e
 export TARGET = iphone:16.5:9.0
 include $(THEOS)/makefiles/common.mk
 
 # FULL PATH of the FLEX repo on your own machine
-FLEX_ROOT = FLEX
+FLEX_ROOT = $(PWD)/libflex/FLEX
 
 # Function to convert /foo/bar to -I/foo/bar
 dtoim = $(foreach d,$(1),-I$(d))
