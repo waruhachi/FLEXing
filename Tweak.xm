@@ -7,8 +7,8 @@
 //
 
 
+#import <roothide.h>
 #import "Interfaces.h"
-#import <rootless.h>
 
 BOOL initialized = NO;
 id manager = nil;
@@ -37,11 +37,11 @@ inline bool isSnapchatApp() {
 
 inline BOOL flexAlreadyLoaded() {
     return NSClassFromString(@"FLEXExplorerToolbar") != nil;
-} 
+}
 
 %ctor {
-    NSString *standardPath = ROOT_PATH_NS(@"/Library/MobileSubstrate/DynamicLibraries/libFLEX.dylib");
-    NSString *reflexPath =   ROOT_PATH_NS(@"/Library/MobileSubstrate/DynamicLibraries/libreflex.dylib");
+    NSString *standardPath = jbroot(@"/Library/MobileSubstrate/DynamicLibraries/libFLEX.dylib");
+    NSString *reflexPath =   jbroot(@"/Library/MobileSubstrate/DynamicLibraries/libreflex.dylib");
     NSFileManager *disk = NSFileManager.defaultManager;
     NSString *libflex = nil;
     NSString *libreflex = nil;
@@ -74,7 +74,7 @@ inline BOOL flexAlreadyLoaded() {
         // This is so users don't get their accounts locked.
         if (isLikelyUIProcess() && !isSnapchatApp()) {
             handle = dlopen(libflex.UTF8String, RTLD_LAZY);
-            
+
             if (libreflex) {
                 dlopen(libreflex.UTF8String, RTLD_NOW);
             }
@@ -130,12 +130,12 @@ inline BOOL flexAlreadyLoaded() {
 %hook UIStatusBarWindow
 - (id)initWithFrame:(CGRect)frame {
     self = %orig;
-    
+
     if (initialized) {
         // Add long-press gesture to status bar
         [self addGestureRecognizer:[[UILongPressGestureRecognizer alloc] initWithTarget:manager action:show]];
     }
-    
+
     return self;
 }
 %end
@@ -163,7 +163,7 @@ inline BOOL flexAlreadyLoaded() {
         // Don't dim first detent
         self._indexOfLastUndimmedDetent = 1;
     }
-    
+
     return self;
 }
 %end
@@ -174,7 +174,7 @@ inline BOOL flexAlreadyLoaded() {
     if (!dlopen(path.UTF8String, RTLD_NOW)) {
         return @(dlerror());
     }
-    
+
     return @"OK";
 }
 %end

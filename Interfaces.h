@@ -8,8 +8,8 @@
 
 #pragma mark Imports
 
-#import <UIKit/UIKit.h>
 #include <dlfcn.h>
+#import <UIKit/UIKit.h>
 
 
 #pragma mark Globals
@@ -82,5 +82,5 @@ extern SEL show;
 @property (setter=_setAllowsInteractiveDismissWhenFullScreen:) BOOL _allowsInteractiveDismissWhenFullScreen;
 @property (setter=_setPresentsAtStandardHalfHeight:) BOOL _presentsAtStandardHalfHeight;
 @property (setter=_setPrefersScrollingExpandsToLargerDetentWhenScrolledToEdge:)
-           BOOL _prefersScrollingExpandsToLargerDetentWhenScrolledToEdge; 
+           BOOL _prefersScrollingExpandsToLargerDetentWhenScrolledToEdge;
 @end
