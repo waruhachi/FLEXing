@@ -3,7 +3,7 @@ export TARGET = iphone:16.5:9.0
 include $(THEOS)/makefiles/common.mk
 
 # FULL PATH of the FLEX repo on your own machine
-FLEX_ROOT = $(PWD)/libflex/FLEX
+FLEX_ROOT = $(PWD)/FLEX
 
 # Function to convert /foo/bar to -I/foo/bar
 dtoim = $(foreach d,$(1),-I$(d))
