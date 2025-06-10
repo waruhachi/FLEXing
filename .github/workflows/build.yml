@@ -36,6 +36,8 @@ jobs:
                     scheme_arg: "THEOS_PACKAGE_SCHEME=roothide"
         steps:
             - uses: actions/checkout@v4
+              with:
+                submodules: recursive
 
             - name: Set up Theos
               uses: waruhachi/theos-action@v2.4.6
