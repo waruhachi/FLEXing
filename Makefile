@@ -19,5 +19,5 @@ print-%  : ; @echo $* = $($*)
 # The SUBPROJECTS feature bundles both projects into
 # one package. We want two separate packages.
 #
-# SUBPROJECTS += libflex
-# include $(THEOS_MAKE_PATH)/aggregate.mk
+SUBPROJECTS += libflex
+include $(THEOS_MAKE_PATH)/aggregate.mk
